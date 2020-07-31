@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Converter</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="menu">
+    <a class="menu_link" href="#">Конвертер</a>
+    <a class="menu_link" th:href="@{/history}">История</a>
+</div>
+<div class="container">
+    <h1>Конвертер</h1>
+    <form class="converter_form" th:action="@{/history}"
+          th:object="${historyDto}" method="post">
+        <div class="content">
+            <div class="currency_name">
+                <select th:field = "*{srcCurrency}" class="field, currency_field">
+                    <option th:each="s : ${quotes}" th:text="${s.charCode + '(' + s.name +')'}"
+                            th:value="${s.charCode}"></option>
+                </select>
+                <select th:field="*{dstCurrency}" class="field, currency_field">
+                    <option th:each="d : ${quotes}" th:text="${d.charCode + '(' + d.name +')'}"
+                            th:value="${d.charCode}"></option>
+                </select>
+            </div>
+            <div class="currency_value">
+                <input class="field, currency_field" type="number" th:field="*{srcSum}" th:id="srcSum"
+                       required min="1">
+                <p class="field, currency_field" th:text="${result}"> </p>
+            </div>
+        </div>
+
+
+        <button type="submit" class="field, currency_field, submit">Конвертировать</button>
+    </form>
+</div>
+</body>
+
+</html>

@@ -10,10 +10,10 @@ import vadimio.ru.CurrencyConverter.entities.Quote;
 import vadimio.ru.CurrencyConverter.repositories.QuoteRepository;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 @Service
 public class QuoteService {
@@ -44,11 +44,20 @@ public class QuoteService {
                         e.getElementsByTag("Name").text(),
                         Float.parseFloat(e.getElementsByTag("Value").text().replace(',','.')),
                         format.parse(date));
-                Quote existQuote = quoteRepository.findOneByValuteId(quote.getValuteId());
-                if(existQuote == null) quoteRepository.save(quote);
+                Quote existQuote = quoteRepository.findOneByCurrencyId(quote.getCurrencyId());
+                if(existQuote != null) quoteRepository.delete(existQuote);
+                quoteRepository.save(quote);
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Quote> findAll() {
+        return quoteRepository.findAll();
+    }
+
+    public Quote findOneByCharCode(String code) {
+        return quoteRepository.findOneByCharCode(code);
     }
 }

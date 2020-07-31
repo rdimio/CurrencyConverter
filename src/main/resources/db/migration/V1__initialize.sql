@@ -54,25 +54,26 @@ VALUES (1, 1);
 DROP TABLE IF EXISTS quotes;
 CREATE TABLE quotes
 (
-    id        SMALLSERIAL,
-    valute_id VARCHAR(7),
-    num_code  SMALLINT,
-    char_code VARCHAR(3),
-    nominal   SMALLINT,
-    name      VARCHAR(255),
-    value     NUMERIC(7, 4),
-    date      DATE,
+    id          SMALLSERIAL,
+    currency_id VARCHAR(7),
+    num_code    SMALLINT,
+    char_code   VARCHAR(3),
+    nominal     SMALLINT,
+    name        VARCHAR(255),
+    value       NUMERIC(7, 4),
+    date        DATE,
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS users_quotes;
-CREATE TABLE users_quotes
+DROP TABLE IF EXISTS history;
+CREATE TABLE history
 (
-    user_id  SMALLINT NOT NULL,
-    quote_id SMALLINT NOT NULL,
-    PRIMARY KEY (user_id, quote_id),
-    FOREIGN KEY (user_id)
-        REFERENCES users (id),
-    FOREIGN KEY (quote_id)
-        REFERENCES roles (id)
+    id           SMALLSERIAL,
+    src_currency VARCHAR(255),
+    dst_currency VARCHAR(255),
+    src_sum      INT,
+    dst_sum      NUMERIC(12, 2),
+    date         DATE,
+    user_id      SMALLINT,
+    PRIMARY KEY (id)
 );

@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" th:href="@{../style.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <div class="container">
     <h1>Конвертер валют</h1>
-    <form class="login_form" th:action="@{/authenticateTheUser}"
-          th:object="${user}" method="post">
-        <input class="login" type="text" name="login" placeholder="Логин"
+    <form class="login_form" th:action="@{/authenticateTheUser}" method="post">
+        <input class="field" type="text" name="username" placeholder="Логин"
                required minlength="3" maxlength="25">
-        <input class="login" type="password" name="password" placeholder="Пароль"
+        <input class="field" type="password" name="password" placeholder="Пароль"
                required minlength="4" maxlength="25">
-        <p th:text="${error}"></p>
-        <button type="submit" class="login, sign_in">Войти</button>
+        <div th:if="${param.error} != null"> неверный логин или пароль</div>
+        <button type="submit" class="field, sign_in">Войти</button>
     </form>
 </div>
 </body>

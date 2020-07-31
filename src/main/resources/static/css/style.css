@@ -1,0 +1,60 @@
+*{
+    margin:0;
+    padding:0;
+}
+.container,.login_form,.converter_form{
+    display:flex;
+    justify-content:space-around;
+    flex-direction:column;
+    align-items:center;
+}
+.container{
+    position:absolute;
+    top: 10%;
+    left: 10%;
+    background-color:#ececec;
+    border: 1px solid #000;
+    min-width:20%;
+}
+h1{
+    margin:25px;
+}
+.field, .sign_in{
+    margin-bottom: 15px;
+    width:90%;
+    padding: 3px;
+}
+.currency_field,.submit{
+    width:40%;
+    margin-top:15px;
+    padding:2px;
+}
+.sign_in, .submit{
+    background-color:lightgrey;
+    border-radius:5px;
+    font-size:16px;
+}
+.submit{
+    width:30%;
+    padding: 3px;
+    margin:30px;
+}
+.sign_in,.submit:hover{
+    position: relative;
+    top:2px;
+}
+.currency_name,.currency_value{
+    display:flex;
+    justify-content:space-around;
+}
+.menu{
+    margin:15px;
+}
+.menu_link{
+    text-decoration:none;
+    color:black;
+    margin:15px;
+}
+.menu_link:hover{
+    color:grey;
+}

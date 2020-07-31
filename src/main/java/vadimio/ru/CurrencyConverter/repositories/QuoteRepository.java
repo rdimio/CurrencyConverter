@@ -6,5 +6,7 @@ import vadimio.ru.CurrencyConverter.entities.Quote;
 
 @Repository
 public interface QuoteRepository extends JpaRepository<Quote, Short> {
-    Quote findOneByValuteId(String valuteId);
+    Quote findOneByCurrencyId(String valuteId);
+
+    Quote findOneByCharCode(String code);
 }

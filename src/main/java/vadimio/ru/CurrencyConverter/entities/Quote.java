@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
@@ -18,8 +17,8 @@ public class Quote {
     @Column
     private Short id;
 
-    @Column(name = "valute_id")
-    private String valuteId;
+    @Column(name = "currency_id")
+    private String currencyId;
 
     @Column(name = "num_code")
     private Short numCode;
@@ -39,14 +38,8 @@ public class Quote {
     @Column
     private Date date;
 
-    @ManyToMany
-    @JoinTable(name = "users_quotes",
-            joinColumns = @JoinColumn(name = "quote_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> users;
-
-    public Quote(String valuteId, Short numCode, String charCode, Short nominal, String name, Float value, Date date) {
-        this.valuteId = valuteId;
+    public Quote(String currencyId, Short numCode, String charCode, Short nominal, String name, Float value, Date date) {
+        this.currencyId = currencyId;
         this.numCode = numCode;
         this.charCode = charCode;
         this.nominal = nominal;

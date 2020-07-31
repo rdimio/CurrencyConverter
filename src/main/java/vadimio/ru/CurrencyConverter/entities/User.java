@@ -37,10 +37,4 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
-    @ManyToMany
-    @JoinTable(name = "users_quotes",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "quote_id"))
-    private List<Quote> quotes;
-
 }
