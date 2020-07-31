@@ -79,7 +79,7 @@ public class ConverterController {
                                  Principal principal,
                                  Model model) {
         SimpleDateFormat format = new SimpleDateFormat();
-        format.applyPattern("dd/MM/yyyy");
+        format.applyPattern("dd.MM.yyyy");
 
         String name = principal.getName();
         User user = userService.findByLogin(name);
@@ -102,6 +102,8 @@ public class ConverterController {
             historyService.save(history);
         } catch (ParseException e) {
         }
+        model.addAttribute("srcCharCode", src.getCharCode() + '(' + src.getName() + ')');
+        model.addAttribute("dstCharCode", dst.getCharCode() + '(' + dst.getName() + ')');
         model.addAttribute("result", result);
         model.addAttribute("src", hdto.getSrcSum());
         initializeQuotes(model);

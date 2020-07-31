@@ -33,7 +33,7 @@ public class QuoteService {
             Elements valuteId = doc.getElementsByAttribute("ID");
             for (Element e : valuteId) {
                 SimpleDateFormat format = new SimpleDateFormat();
-                format.applyPattern("dd/MM/yyyy");
+                format.applyPattern("dd.MM.yyyy");
                 Quote quote = new Quote(
                         e.attr("ID"),
                         Short.parseShort(e.getElementsByTag("NumCode").text()),
