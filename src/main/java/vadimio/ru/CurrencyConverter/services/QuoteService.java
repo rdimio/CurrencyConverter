@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import vadimio.ru.CurrencyConverter.entities.Quote;
 import vadimio.ru.CurrencyConverter.repositories.QuoteRepository;
@@ -25,15 +26,17 @@ public class QuoteService {
         this.quoteRepository = quoteRepository;
     }
 
+    @Value("${centro.bank.address}")
+    private String centroBankAdress;
 
     public void loadQuotes() {
         try {
             String date = CustomDate.customDate();
-            Document doc = Jsoup.connect("http://www.cbr.ru/scripts/XML_daily.asp?date_req=" + date).get();
+            Document doc = Jsoup.connect(centroBankAdress + date).get();
             Elements valuteId = doc.getElementsByAttribute("ID");
             for (Element e : valuteId) {
                 SimpleDateFormat format = new SimpleDateFormat();
-                format.applyPattern("dd/MM/yyyy");
+                format.applyPattern("dd.MM.yyyy");
                 Quote quote = new Quote(
                         e.attr("ID"),
                         Short.parseShort(e.getElementsByTag("NumCode").text()),

@@ -1,3 +1,9 @@
+![Image alt](https://github.com/VadimRybakov/CurrencyConverter/raw/master/screenshots/login.png)
+![Image alt](https://github.com/VadimRybakov/CurrencyConverter/raw/master/screenshots/converter.png)
+![Image alt](https://github.com/VadimRybakov/CurrencyConverter/raw/master/screenshots/convert.png)
+![Image alt](https://github.com/VadimRybakov/CurrencyConverter/raw/master/screenshots/history.png)
+![Image alt](https://github.com/VadimRybakov/CurrencyConverter/raw/master/screenshots/filters.png)
+
 1.Настройка базы данных PostgreSQL:
 
 Создаем базу данных test

@@ -16,14 +16,16 @@
           th:object="${historyDto}" method="post">
         <div class="content">
             <div class="currency_name">
-                <select th:field = "*{srcCurrency}" class="field, currency_field">
+                <select th:if="${srcCharCode == null}" th:field = "*{srcCurrency}" class="field, currency_field">
                     <option th:each="s : ${quotes}" th:text="${s.charCode + '(' + s.name +')'}"
                             th:value="${s.charCode}"></option>
                 </select>
-                <select th:field="*{dstCurrency}" class="field, currency_field">
+                <p th:if="${srcCharCode != null}" th:text = "${srcCharCode}" class="field, currency_field"></p>
+                <select th:if="${dstCharCode == null}" th:field="*{dstCurrency}" class="field, currency_field">
                     <option th:each="d : ${quotes}" th:text="${d.charCode + '(' + d.name +')'}"
                             th:value="${d.charCode}"></option>
                 </select>
+                <p th:if="${dstCharCode != null}" th:text = "${dstCharCode}" class="field, currency_field"></p>
             </div>
             <div class="currency_value">
                 <input th:if="${src == null}" class="field, currency_field" type="number" th:field="*{srcSum}"
@@ -33,8 +35,9 @@
             </div>
         </div>
 
+        <button th:if="${srcCharCode == null}" type="submit" class="field, currency_field, submit">Конвертировать</button>
+        <a th:if="${srcCharCode != null}" th:href="@{/convert}" class="field, currency_field, update">Обновить</a>
 
-        <button type="submit" class="field, currency_field, submit">Конвертировать</button>
     </form>
 </div>
 </body>
