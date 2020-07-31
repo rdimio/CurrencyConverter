@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{../style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Конвертер валют</h1>
+    <form class="login_form" th:action="@{/authenticateTheUser}"
+          th:object="${user}" method="post">
+        <input class="login" type="text" name="login" placeholder="Логин"
+               required minlength="3" maxlength="25">
+        <input class="login" type="password" name="password" placeholder="Пароль"
+               required minlength="4" maxlength="25">
+        <p th:text="${error}"></p>
+        <button type="submit" class="login, sign_in">Войти</button>
+    </form>
+</div>
+</body>
+</html>

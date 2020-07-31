@@ -56,14 +56,16 @@ CREATE TABLE quotes
 (
     id        SMALLSERIAL,
     valute_id VARCHAR(7),
-    code      VARCHAR(3),
+    num_code  SMALLINT,
+    char_code VARCHAR(3),
     nominal   SMALLINT,
     name      VARCHAR(255),
-    value     NUMERIC(6, 4),
+    value     NUMERIC(7, 4),
     date      DATE,
     PRIMARY KEY (id)
 );
 
+DROP TABLE IF EXISTS users_quotes;
 CREATE TABLE users_quotes
 (
     user_id  SMALLINT NOT NULL,
