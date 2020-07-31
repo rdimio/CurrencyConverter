@@ -47,4 +47,5 @@ public class Quote {
         this.value = value;
         this.date = date;
     }
+
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="menu">
+        <a class="menu_link" th:href="@{/convert}">Конвертер</a>
+        <a class="menu_link" th:href="@{/history}">История</a>
+    </div>
+    <div class="container">
+        <h1>История</h1>
+        <form class="history_form" th:action="@{/history/search}"
+              th:object="${filterDto}" method="post">
+            <div class="input_filters">
+                <select th:field = "*{srcCurrency}" class="filters_field">
+                    <option th:each="s : ${quotes}" th:text="${s.charCode}"
+                            th:value="${s.charCode + '(' + s.name +')'}"></option>
+                </select>
+                <select th:field="*{dstCurrency}" class="filters_field">
+                    <option th:each="d : ${quotes}" th:text="${d.charCode}"
+                            th:value="${d.charCode + '(' + d.name +')'}"></option>
+                </select>
+            </div>
+            <table class="history_table">
+                <tr class="table_header">
+                    <td class="table_content">Исходная валюта</td>
+                    <td class="table_content">Целевая валюта</td>
+                    <td class="table_content">Исходная сумма</td>
+                    <td class="table_content">Получаемая сумма</td>
+                    <td class="table_content">Дата</td>
+                </tr>
+                <tr th:each="l : ${list}">
+                    <td th:text="${l.srcCurrency}"></td>
+                    <td th:text="${l.dstCurrency}"></td>
+                    <td th:text="${l.srcSum}"></td>
+                    <td th:text="${l.dstSum}"></td>
+                    <td th:text="${l.showDate()}"></td>
+                </tr>
+            </table>
+
+            <button type="submit" class="field, currency_field, submit">Поиск</button>
+        </form>
+    </div>
+</body>
+</html>

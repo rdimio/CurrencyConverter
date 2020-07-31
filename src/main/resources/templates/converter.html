@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="menu">
-    <a class="menu_link" href="#">Конвертер</a>
+    <a class="menu_link" th:href="@{/convert}">Конвертер</a>
     <a class="menu_link" th:href="@{/history}">История</a>
 </div>
 <div class="container">
@@ -26,8 +26,9 @@
                 </select>
             </div>
             <div class="currency_value">
-                <input class="field, currency_field" type="number" th:field="*{srcSum}" th:id="srcSum"
+                <input th:if="${src == null}" class="field, currency_field" type="number" th:field="*{srcSum}"
                        required min="1">
+                <p th:if="${src != null}" class="field, currency_field" th:text="${src}"> </p>
                 <p class="field, currency_field" th:text="${result}"> </p>
             </div>
         </div>

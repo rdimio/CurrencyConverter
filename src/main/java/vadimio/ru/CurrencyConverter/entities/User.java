@@ -1,13 +1,10 @@
 package vadimio.ru.CurrencyConverter.entities;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 import java.util.List;
 
@@ -36,5 +33,8 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<History> histories;
 
 }

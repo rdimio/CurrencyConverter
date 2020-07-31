@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vadimio.ru.CurrencyConverter.entities.Quote;
 import vadimio.ru.CurrencyConverter.repositories.QuoteRepository;
+import vadimio.ru.CurrencyConverter.utils.CustomDate;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -28,9 +28,7 @@ public class QuoteService {
 
     public void loadQuotes() {
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Calendar cal = Calendar.getInstance();
-            String date = dateFormat.format(cal.getTime());
+            String date = CustomDate.customDate();
             Document doc = Jsoup.connect("http://www.cbr.ru/scripts/XML_daily.asp?date_req=" + date).get();
             Elements valuteId = doc.getElementsByAttribute("ID");
             for (Element e : valuteId) {
@@ -49,7 +47,6 @@ public class QuoteService {
                 quoteRepository.save(quote);
             }
         } catch (IOException | ParseException e) {
-            e.printStackTrace();
         }
     }
 

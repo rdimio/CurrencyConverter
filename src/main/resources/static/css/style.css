@@ -2,7 +2,7 @@
     margin:0;
     padding:0;
 }
-.container,.login_form,.converter_form{
+.container,.login_form,.converter_form,.history_form{
     display:flex;
     justify-content:space-around;
     flex-direction:column;
@@ -43,7 +43,7 @@ h1{
     position: relative;
     top:2px;
 }
-.currency_name,.currency_value{
+.currency_name,.currency_value,.input_filters{
     display:flex;
     justify-content:space-around;
 }
@@ -57,4 +57,26 @@ h1{
 }
 .menu_link:hover{
     color:grey;
+}
+.input_filters{
+    align-items:center;
+    margin-bottom:15px;
+}
+.filters_field{
+    min-width:40%;
+    margin:15px;
+    padding:3px;
+}
+table{
+    border-collapse:collapse;
+    margin:15px;
+}
+table, td, th {
+    border: 1px solid #595959;
+}
+td, th {
+    padding: 6px;
+}
+.table_content{
+    background-color:grey;
 }
